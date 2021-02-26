@@ -26,9 +26,9 @@ try {
     $adresse = "4 BIS Ruelle vitou, Anor";
     $cp = 59186;
     $pays = "France";
-    $date = 2021-02-26;
+    $date = '2021-02-26';
 
-    $sql1->bindParam(':id', $id);
+    $sql1->bindParam(':id', $id, PDO::PARAM_NULL);
     $sql1->bindParam(':nom', $nom);
     $sql1->bindParam(':prenom', $prenom);
     $sql1->bindParam(':email', $email);
@@ -72,7 +72,7 @@ try {
     $adresse = "2 state Spider, New York";
     $cp = 65258;
     $pays = "USA";
-    $date = 2021-02-26;
+    $date = '2021-02-26';
 
     $sql3->bindValue(":id", $id);
     $sql3->bindValue(":nom", $nom);
@@ -103,35 +103,8 @@ try {
 
     $sql4->execute();
 
-    $sql5 = $pdo->prepare( "
-        INSERT INTO utilisateur VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ");
-
-    $nom = "Peter2";
-    $prenom = "Parker2";
-    $email = "peter.parker@mail.com2";
-    $mdp = "spiderMan1232";
-    $adresse = "2 state Spider, New York2";
-    $cp = 652582;
-    $pays = "USA2";
-    $date = 2021-02-26;
-
-    $sql5->bindValue(1, $id);
-    $sql5->bindValue(2, $nom);
-    $sql5->bindValue(3, $prenom);
-    $sql5->bindValue(4, $email);
-    $sql5->bindValue(5, $mdp);
-    $sql5->bindValue(6, $adresse);
-    $sql5->bindValue(7, $cp, PDO::PARAM_INT);
-    $sql5->bindValue(8, $pays);
-    $sql5->bindValue(9, $date);
-
-    $sql5->execute();
-
-
 }
 catch (PDOException $e) {
     echo "Une erreur est survenue: ".$e->getMessage()."<br>";
     $pdo->rollBack();
 }
-
